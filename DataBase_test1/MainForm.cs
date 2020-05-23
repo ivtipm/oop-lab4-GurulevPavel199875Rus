@@ -599,8 +599,18 @@ namespace DataBase_test1
             {
                 object ObjID = e.Row.Cells[0].Value;
                 ushort ID = (ushort)ObjID;
+                FilmRow film;
 
-                data.DeleteRow(ID);
+                for (int i = 0; i < data.FilmFile.Count; i++)
+                {
+                    film = (FilmRow)data.FilmFile[i];
+
+                    if(film.FilmID == ID)
+                    {
+                        data.DeleteRow(i);
+                        break;
+                    }
+                }                
             }
             catch (Exception ex)
             {
