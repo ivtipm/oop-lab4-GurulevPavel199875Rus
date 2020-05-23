@@ -20,10 +20,16 @@ namespace DataBase_test1
         }
 
         // Удалить определённую строку из массива
-        public void DeleteRow(int number) => FilmFile.RemoveAt(number);
+        public void DeleteRow(int number)
+        {
+            FilmFile.RemoveAt(number);
+        }
 
         // Удалить все строки из массива
-        public void DeleteAllRows() => FilmFile.Clear();
+        public void DeleteAllRows()
+        {
+            FilmFile.Clear();
+        }
 
         // Изменить название фильма
         public void EditFilmTitle(string title, int index)

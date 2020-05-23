@@ -78,11 +78,11 @@
             this.button_Sort = new System.Windows.Forms.Button();
             this.comboBoxChoiceSort = new System.Windows.Forms.ComboBox();
             this.panel_Search = new System.Windows.Forms.Panel();
+            this.label_Search2 = new System.Windows.Forms.Label();
             this.button_SearchOK = new System.Windows.Forms.Button();
             this.textBox_Search = new System.Windows.Forms.TextBox();
             this.label_Search = new System.Windows.Forms.Label();
             this.labelSave = new System.Windows.Forms.Label();
-            this.label_Search2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.menuStrip.SuspendLayout();
             this.panelAdd.SuspendLayout();
@@ -112,6 +112,7 @@
             this.dataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_CellClick);
             this.dataGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_CellEndEdit);
             this.dataGrid.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGrid_RowsRemoved);
+            this.dataGrid.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGrid_UserDeletingRow);
             // 
             // Column_ID
             // 
@@ -175,7 +176,7 @@
             // 
             this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
             this.создатьToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.создатьToolStripMenuItem.Text = "Создать";
             this.создатьToolStripMenuItem.Click += new System.EventHandler(this.создатьToolStripMenuItem_Click);
             // 
@@ -183,7 +184,7 @@
             // 
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
             this.открытьToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.открытьToolStripMenuItem.Text = "Открыть";
             this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
             // 
@@ -191,7 +192,7 @@
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
             this.сохранитьToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
@@ -223,21 +224,21 @@
             // добавлениеСтрокToolStripMenuItem
             // 
             this.добавлениеСтрокToolStripMenuItem.Name = "добавлениеСтрокToolStripMenuItem";
-            this.добавлениеСтрокToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.добавлениеСтрокToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.добавлениеСтрокToolStripMenuItem.Text = "Добавление строк";
             this.добавлениеСтрокToolStripMenuItem.Click += new System.EventHandler(this.добавлениеСтрокToolStripMenuItem_Click);
             // 
             // поискСтрокToolStripMenuItem
             // 
             this.поискСтрокToolStripMenuItem.Name = "поискСтрокToolStripMenuItem";
-            this.поискСтрокToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.поискСтрокToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.поискСтрокToolStripMenuItem.Text = "Поиск строк";
             this.поискСтрокToolStripMenuItem.Click += new System.EventHandler(this.поискСтрокToolStripMenuItem_Click);
             // 
             // удалитьВсёToolStripMenuItem
             // 
             this.удалитьВсёToolStripMenuItem.Name = "удалитьВсёToolStripMenuItem";
-            this.удалитьВсёToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.удалитьВсёToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.удалитьВсёToolStripMenuItem.Text = "Удалить всё";
             this.удалитьВсёToolStripMenuItem.Click += new System.EventHandler(this.удалитьВсёToolStripMenuItem_Click);
             // 
@@ -552,6 +553,17 @@
             this.panel_Search.TabIndex = 118;
             this.panel_Search.Visible = false;
             // 
+            // label_Search2
+            // 
+            this.label_Search2.AutoSize = true;
+            this.label_Search2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_Search2.Location = new System.Drawing.Point(16, 122);
+            this.label_Search2.Name = "label_Search2";
+            this.label_Search2.Size = new System.Drawing.Size(297, 32);
+            this.label_Search2.TabIndex = 103;
+            this.label_Search2.Text = "Введите любое слово, которое хотите \r\nнайти в базе";
+            this.label_Search2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // button_SearchOK
             // 
             this.button_SearchOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
@@ -591,17 +603,6 @@
             this.labelSave.TabIndex = 119;
             this.labelSave.Text = "Cохранение...";
             this.labelSave.Visible = false;
-            // 
-            // label_Search2
-            // 
-            this.label_Search2.AutoSize = true;
-            this.label_Search2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_Search2.Location = new System.Drawing.Point(16, 122);
-            this.label_Search2.Name = "label_Search2";
-            this.label_Search2.Size = new System.Drawing.Size(297, 32);
-            this.label_Search2.TabIndex = 103;
-            this.label_Search2.Text = "Введите любое слово, которое хотите \r\nнайти в базе";
-            this.label_Search2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 

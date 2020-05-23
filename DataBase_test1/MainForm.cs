@@ -82,17 +82,33 @@ namespace DataBase_test1
         //Создаёт порядковый ID
         public ushort generateID()
         {
-            try
-            {
-                FilmRow film = (FilmRow)data.FilmFile[data.FilmFile.Count-1];
-                ushort NewID = film.FilmID;
-                NewID++;
-                return NewID;
-            }
-            catch(Exception ex)
-            {
-                return 1;
-            }
+            int id = data.FilmFile.Count + 1;
+            return (ushort)id;
+
+
+            //Random r = new Random();
+            //int id = r.Next(0, 1000);
+            //for (int i = 0; i < data.FilmFile.Count; i++)
+            //{
+            //    FilmRow film = (FilmRow)data.FilmFile[i];
+            //    if (film.FilmID == id)
+            //    {
+            //        i = 0;
+            //        id = r.Next(0, 1000);
+            //    }
+            //}
+            //return (ushort)id;
+            //try
+            //{
+            //    FilmRow film = (FilmRow)data.FilmFile[data.FilmFile.Count-1];
+            //    ushort NewID = film.FilmID;
+            //    NewID++;
+            //    return NewID;
+            //}
+            //catch(Exception ex)
+            //{
+            //    return 1;
+            //}
         }
 
         //Режим добавления строк
@@ -205,22 +221,21 @@ namespace DataBase_test1
         //Удаление отдельных записей в базе
         private void dataGrid_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
-            try
-            {
-                int count = dataGrid.Rows.Count;
-                foreach (DataGridViewRow row in dataGrid.SelectedRows)
-                {
-                    int index = row.Index; // индекс выбранной строки
-                    if (index == count - 1) return;
-
-                    data.DeleteRow(index);
-                    dataGrid.Rows.RemoveAt(index);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка: {ex.Message}");
-            }
+            //try
+            //{
+            //    int count = dataGrid.Rows.Count;
+            //    foreach (DataGridViewRow row in dataGrid.SelectedRows)
+            //    {
+            //        int index = row.Index; // индекс выбранной строки
+            //        data.DeleteRow(index);
+            //        dataGrid.Rows.RemoveAt(index);
+            //        if (index == count - 1) return;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Ошибка: {ex.Message}");
+            //}
         }
 
         //Завершение редактирование ячейки
@@ -372,6 +387,7 @@ namespace DataBase_test1
                     timer1.Enabled = false;
                     timer2.Stop();
                     timer2.Enabled = false;
+                    TextBoxsClear();
                 }
             }
         }
@@ -478,10 +494,17 @@ namespace DataBase_test1
         //Нажали на ячейку/строку
         private void dataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int indRow = dataGrid.Rows[e.RowIndex].Index;           
-            FilmRow _film = (FilmRow)data.FilmFile[indRow];
+            try
+            {
+                int indRow = dataGrid.Rows[e.RowIndex].Index;
+                FilmRow _film = (FilmRow)data.FilmFile[indRow];
 
-            CellClick_TextBoxInfo(_film);
+                CellClick_TextBoxInfo(_film);
+            }
+            catch
+            {
+
+            }
         }
 
         //И данные из строки поместились в поля на форме
@@ -561,9 +584,58 @@ namespace DataBase_test1
                     timer1.Stop();
                     timer1.Enabled = false;
                     timer2.Stop();
-                    timer2.Enabled = false;
+                    timer2.Enabled = false;                    
+                }
+                else
+                {
+                    e.Cancel = true;                    
                 }
             }
+        }
+
+        private void dataGrid_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            try
+            {
+                object ObjID = e.Row.Cells[0].Value;
+                ushort ID = (ushort)ObjID;
+                FilmRow film;
+
+                for (int i = 0; i < data.FilmFile.Count; i++)
+                {
+                    film = (FilmRow)data.FilmFile[i];
+
+                    if(film.FilmID == ID)
+                    {
+                        data.DeleteRow(i);
+                        break;
+                    }
+                }                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}");
+            }
+            //try
+            //{
+            //    int count = dataGrid.Rows.Count;
+            //    foreach (DataGridViewRow row in dataGrid.SelectedRows)
+            //    {
+            //        int index = row.Index; // индекс выбранной строки
+
+            //        data.DeleteRow(index);
+            //        dataGrid.Rows.RemoveAt(index);
+
+            //        if (index == count - 1) return;
+
+            //        //data.DeleteRow(index);
+            //        //dataGrid.Rows.RemoveAt(index);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Ошибка: {ex.Message}");
+            //}
         }
     }
 }

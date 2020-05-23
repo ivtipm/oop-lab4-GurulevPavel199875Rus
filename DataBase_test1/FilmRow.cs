@@ -27,9 +27,9 @@ namespace DataBase_test1
             FilmCountry = filmCountry;
             FilmLanguage = filmLanguage;
 
-            if ((yearRelease < 1895) || (yearRelease > (DateTime.Now.Year)+10))
+            if ((yearRelease < 1895) || (yearRelease > (DateTime.Now.Year+10)))
             {
-                throw new Exception("Год премьеры должен быть не раньше 1895 и не позднее " + (DateTime.Now.Year) + 10);
+                throw new Exception("Год премьеры должен быть не раньше 1895 и не позднее 2030");
             }
 
             YearRelease = yearRelease;
