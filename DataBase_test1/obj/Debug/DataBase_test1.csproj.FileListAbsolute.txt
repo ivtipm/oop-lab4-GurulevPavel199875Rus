@@ -1,0 +1,10 @@
+G:\VS2017_Projects\DataBase_test1\DataBase_test1\obj\Debug\DataBase_test1.csprojAssemblyReference.cache
+G:\VS2017_Projects\DataBase_test1\DataBase_test1\obj\Debug\DataBase_test1.Properties.Resources.resources
+G:\VS2017_Projects\DataBase_test1\DataBase_test1\obj\Debug\DataBase_test1.csproj.GenerateResource.cache
+G:\VS2017_Projects\DataBase_test1\DataBase_test1\obj\Debug\DataBase_test1.csproj.CoreCompileInputs.cache
+G:\VS2017_Projects\DataBase_test1\DataBase_test1\bin\Debug\DataBase_test1.exe.config
+G:\VS2017_Projects\DataBase_test1\DataBase_test1\bin\Debug\DataBase_test1.exe
+G:\VS2017_Projects\DataBase_test1\DataBase_test1\bin\Debug\DataBase_test1.pdb
+G:\VS2017_Projects\DataBase_test1\DataBase_test1\obj\Debug\DataBase_test1.exe
+G:\VS2017_Projects\DataBase_test1\DataBase_test1\obj\Debug\DataBase_test1.pdb
+G:\VS2017_Projects\DataBase_test1\DataBase_test1\obj\Debug\DataBase_test1.MainForm.resources
